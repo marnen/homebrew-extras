@@ -2,13 +2,13 @@ require "formula"
 
 class Frescobaldi < Formula
   homepage "http://frescobaldi.org/"
-  url "https://github.com/wbsoft/frescobaldi/releases/download/v2.0.15/frescobaldi-2.0.15.tar.gz"
-  sha1 "e110ca2be338ca4fb9a0369c6f733dbdf731a027"
+  url "https://github.com/wbsoft/frescobaldi/releases/download/v2.0.16/frescobaldi-2.0.16.tar.gz"
+  sha1 "6b7e72def3f93aa9521d7a1cdb72399f1a5765c5"
 
   option "without-launcher", "Don't build Mac .app launcher"
   option "without-lilypond", "Don't install Lilypond"
 
-  depends_on :python
+  depends_on :python if MacOS.version <= :snow_leopard
   depends_on "portmidi" => :recommended
   depends_on "lilypond" => :recommended
 
@@ -22,12 +22,6 @@ class Frescobaldi < Formula
     sha1 "584345ae2fae2e1d667222cafa404a241cf95a1f"
   end
 
-  def patches
-    # Add my name to the credits as Homebrew formula maintainer.
-    # Remove if https://github.com/wbsoft/frescobaldi/pull/391 is accepted.
-    'https://github.com/wbsoft/frescobaldi/commit/0cce03.patch'
-  end
-
   def install
     resource("python-poppler-qt4").stage do
       system "python", "setup.py", "build"
@@ -35,8 +29,8 @@ class Frescobaldi < Formula
     end
     system "python", "setup.py", "install", "--prefix=#{prefix}"
     if build.with? "launcher"
-      system 'python', 'macosx/mac-app.py', '--force', '--version',  version, '--script', bin/'frescobaldi'
-      prefix.install 'dist/Frescobaldi.app'
+      system "python", "macosx/mac-app.py", "--force", "--version",  version, "--script", bin/"frescobaldi"
+      prefix.install "dist/Frescobaldi.app"
     end
   end
 end
