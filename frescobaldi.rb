@@ -2,8 +2,8 @@ require "formula"
 
 class Frescobaldi < Formula
   homepage "http://frescobaldi.org/"
-  url "https://github.com/wbsoft/frescobaldi/releases/download/v2.0.16/frescobaldi-2.0.16.tar.gz"
-  sha1 "6b7e72def3f93aa9521d7a1cdb72399f1a5765c5"
+  url "https://github.com/wbsoft/frescobaldi/releases/download/v2.19.0/frescobaldi-2.19.0.tar.gz"
+  sha256 "b426bd53d54fdc4dfc16fcfbff957fdccfa319d6ac63614de81f6ada5044d3e6"
 
   option "without-launcher", "Don't build Mac .app launcher"
   option "without-lilypond", "Don't install Lilypond"
@@ -19,7 +19,7 @@ class Frescobaldi < Formula
 
   resource "python-poppler-qt4" do
     url "https://github.com/wbsoft/python-poppler-qt4/archive/v0.18.1.tar.gz"
-    sha1 "584345ae2fae2e1d667222cafa404a241cf95a1f"
+    sha256 "9d6dfe7530c26d6062fb370fbb068bb554d9c3ed0b82dc640c362fdc62ca0947"
   end
 
   def install
